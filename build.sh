@@ -33,7 +33,7 @@ main() {
   # Install Hugo
   echo "Installing Hugo ${HUGO_VERSION}..."
   curl -sLJO "https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSION}/hugo_extended_${HUGO_VERSION}_linux-amd64.tar.gz"
-  mkdir "${HOME}/.local/hugo"
+  mkdir -p "${HOME}/.local/hugo"
   tar -C "${HOME}/.local/hugo" -xf "hugo_extended_${HUGO_VERSION}_linux-amd64.tar.gz"
   rm "hugo_extended_${HUGO_VERSION}_linux-amd64.tar.gz"
   export PATH="${HOME}/.local/hugo:${PATH}"
@@ -47,10 +47,10 @@ main() {
 
   # Verify installations
   echo "Verifying installations..."
-  echo Dart Sass: "$(sass --version)"
-  echo Go: "$(go version)"
-  echo Hugo: "$(hugo version)"
-  echo Node.js: "$(node --version)"
+  echo "Dart Sass: $(sass --version)"
+  echo "Go: $(go version)"
+  echo "Hugo: $(hugo version)"
+  echo "Node.js: $(node --version)"
 
   # Configure Git
   echo "Configuring Git..."
@@ -60,8 +60,8 @@ main() {
   fi
 
   # Build the site
-  echo "Building the site"
-  hugo build --gc --minify --baseURL "https://${VERCEL_PROJECT_PRODUCTION_URL}"
+  echo "Building the site..."
+  hugo --gc --minify --baseURL "https://${VERCEL_PROJECT_PRODUCTION_URL}"
 
 }
 
